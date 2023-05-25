@@ -1,0 +1,49 @@
+import requests
+import json
+
+status = 'avaliable'
+headers = {'accept': 'application/json'}
+
+resget = requests.get(f"https://petstore.swagger.io/v2/pet/findByStatus?status",\
+                   headers=headers, params={'status': 'available'})
+print(resget.status_code)
+print(resget.text)
+print(resget.json)
+
+headers = {'accept': 'application/json', 'Content-Type': 'application/json'}
+data = {
+  "id": 0,
+  "category": {
+    "id": 0,
+    "name": "string"
+  },
+  "name": "doggie",
+  "photoUrls": [
+    "string"
+  ],
+  "tags": [
+    {
+      "id": 0,
+      "name": "string"
+    }
+  ],
+  "status": "available"
+}
+
+respost = requests.post(f'https://petstore.swagger.io/v2/pet', \
+                       headers=headers, json=data)
+print(respost.status_code)
+print(respost.text)
+print(respost.json)
+
+headers = {'accept': 'application/json'}
+resdelete = requests.delete(f'https://petstore.swagger.io/v2/pet/pet_id', headers=headers)
+print(resdelete.status_code)
+print(resdelete.text)
+print(resdelete.json)
+
+headers = {'accept': 'application/json', 'Content-Type': 'application/json'}
+resput = requests.put(f'https://petstore.swagger.io/v2/pet', headers=headers, json=data)
+print(resput.status_code)
+print(resput.text)
+print(resput.json)
